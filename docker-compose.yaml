@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  oidc_backend:
+    build:
+      context: ./django-openid-auth
+      dockerfile: Dockerfile
+    image: oidc_backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./django-openid-auth/.env
+  
+  oidc_frontend:
+    build:
+      context: ./oidc-frontend
+      dockerfile: Dockerfile
+    image: oidc_frontend
+    ports:
+      - "5173:5173"
